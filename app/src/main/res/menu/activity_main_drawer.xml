@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    tools:keep="@menu/activity_main_drawer">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_menu_camera"
+            android:title="ייבוא קובץ" />
+        <item
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="צפייה בנתונים" />
+        <item
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="סטטיסטיקה" />
+        <item
+            android:icon="@drawable/ic_menu_manage"
+            android:title="חיפוש מורחב" />
+    </group>
+
+    <item android:title="קהילה">
+        <menu>
+            <item
+                android:icon="@drawable/ic_menu_share"
+                android:title="שיתוף" />
+            <item
+                android:icon="@drawable/ic_menu_send"
+                android:title="ייצוא מידע" />
+        </menu>
+    </item>
+
+</menu>
