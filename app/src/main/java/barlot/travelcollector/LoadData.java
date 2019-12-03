@@ -148,7 +148,7 @@ public class LoadData extends AppCompatActivity {
                         String cellInfo = "r:" + r + "; c:" + c + "; v:" + value;
                         Log.d(TAG, "readExcelData: Data from row: " + cellInfo);
                         //sb.append(value + ", ");
-                        sb.append(value + "## ");
+                        sb.append(value + "##");
                     }
                 }
                 // for parsing - TODO: consider to change it to less common char
@@ -222,7 +222,7 @@ public class LoadData extends AppCompatActivity {
             try{
                 int albumId = (int)Double.parseDouble(columns[0]);
                 Date date = dateFormmater.parse(columns[1]);
-                String teamName = columns[2];
+                String groupName = columns[2];
                 String guideName = columns[3];
                 String description = columns[4];
                 double distanceInKm = Double.parseDouble(columns[5]);
@@ -235,7 +235,7 @@ public class LoadData extends AppCompatActivity {
                 String linkGoPlus = columns[12];
 
                 //add the the uploadData ArrayList
-                uploadData.add(new TravelData(albumId,date,teamName,guideName,description,
+                uploadData.add(new TravelData(albumId,date,groupName,guideName,description,
                         distanceInKm,tags,alternative,country,comments,link,link2,linkGoPlus));
 
             }catch (NumberFormatException e){
@@ -263,7 +263,7 @@ public class LoadData extends AppCompatActivity {
         for(int i = 0; i< uploadData.size(); i++){
             int albumId = uploadData.get(i).getAlbumId();
             Date date = uploadData.get(i).getDate();
-//            String teamName = uploadData.get(i).getTeamName();
+//            String groupName = uploadData.get(i).getgroupName();
 //            String guideName = uploadData.get(i).getGuideName();
             String description = uploadData.get(i).getDescription();
 //            double distanceInKm = uploadData.get(i).getDistanceInKm();

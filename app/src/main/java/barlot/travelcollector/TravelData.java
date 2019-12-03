@@ -18,7 +18,7 @@ public class TravelData implements Parcelable {
 
     private int albumId = 0;
     private Date date = null;
-    private String teamName = "";
+    private String groupName = "";
     private String guideName = "";
     private String description = "";
     private double distanceInKm = 0;
@@ -30,10 +30,10 @@ public class TravelData implements Parcelable {
     private String link2 = "";
     private String linkGoPlus = "";
 
-    public TravelData(int albumId, Date date, String teamName, String guideName, String description, double distanceInKm, String tags, String alternative, String country, String comments, String link, String link2, String linkGoPlus) {
+    public TravelData(int albumId, Date date, String groupName, String guideName, String description, double distanceInKm, String tags, String alternative, String country, String comments, String link, String link2, String linkGoPlus) {
         this.albumId = albumId;
         this.date = date;
-        this.teamName = teamName;
+        this.groupName = groupName;
         this.guideName = guideName;
         this.description = description;
         this.distanceInKm = distanceInKm;
@@ -49,7 +49,7 @@ public class TravelData implements Parcelable {
     public TravelData(Parcel in) throws ParseException {
         this.albumId = in.readInt();
         this.date = dateFormmater.parse(in.readString());
-        this.teamName =  in.readString();
+        this.groupName =  in.readString();
         this.guideName =  in.readString();
         this.description =  in.readString();
         this.distanceInKm =  in.readDouble();
@@ -78,12 +78,12 @@ public class TravelData implements Parcelable {
         this.date = date;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public String getgroupName() {
+        return groupName;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setgroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public String getGuideName() {
@@ -181,7 +181,7 @@ public class TravelData implements Parcelable {
 
         dest.writeInt(albumId);
         dest.writeString(dateFormmater.format(date));
-        dest.writeString(teamName);
+        dest.writeString(groupName);
         dest.writeString(guideName);
         dest.writeString(description);
         dest.writeDouble(distanceInKm);

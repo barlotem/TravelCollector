@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layout_travel_viewer"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -20,7 +21,8 @@
         android:text="טיול על מים סוערים"
         android:textAllCaps="false"
         android:textDirection="rtl"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimary"/>
 
     <TextView
         android:id="@+id/tv_date"
@@ -32,7 +34,8 @@
         android:layout_marginTop="@dimen/smallmarginTopTextView"
         android:layoutDirection="rtl"
         android:text="27-02-15"
-        android:textDirection="rtl" />
+        android:textDirection="rtl"
+        android:textColor="@color/colorPrimary"/>
 
     <View
         android:id="@+id/crossLine"
@@ -42,10 +45,10 @@
         android:layout_alignRight="@+id/tv_date"
         android:layout_below="@+id/tv_date"
         android:layout_marginTop="@dimen/marginTopTextView"
-        android:background="#ddd" />
+        android:background="@color/colorPrimary" />
 
     <TextView
-        android:id="@+id/tv_country"
+        android:id="@+id/tv_albumId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/crossLine"
@@ -53,42 +56,44 @@
         android:layout_below="@+id/crossLine"
         android:layout_marginTop="@dimen/marginTopTextView"
         android:layoutDirection="rtl"
-        android:text="ישראל"
+        android:text="אלבום מספר 184"
         android:textDirection="rtl"
-        android:drawableRight="@drawable/ic_location_on_black_24dp"
+        android:drawableRight="@drawable/ic_photo_album_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
 
     <TextView
-        android:id="@+id/tv_distanceInKm"
+        android:id="@+id/tv_groupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_country"
-        android:layout_alignRight="@+id/tv_country"
-        android:layout_below="@+id/tv_country"
+        android:layout_alignEnd="@+id/tv_albumId"
+        android:layout_alignRight="@+id/tv_albumId"
+        android:layout_below="@+id/tv_albumId"
         android:layout_marginTop="@dimen/marginTopTextView"
         android:layoutDirection="rtl"
-        android:text="16.9"
+        android:text="אסכולות"
         android:textDirection="rtl"
-        android:drawableRight="@drawable/ic_directions_walk_black_24dp"
+        android:drawableRight="@drawable/ic_group_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
-
 
     <TextView
         android:id="@+id/tv_guideName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_distanceInKm"
-        android:layout_alignRight="@+id/tv_distanceInKm"
-        android:layout_below="@+id/tv_distanceInKm"
+        android:layout_alignEnd="@+id/tv_groupName"
+        android:layout_alignRight="@+id/tv_groupName"
+        android:layout_below="@+id/tv_groupName"
         android:layout_marginTop="@dimen/marginTopTextView"
         android:layoutDirection="rtl"
         android:text="גלעד בן צבי"
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_assignment_ind_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
 
     <TextView
-        android:id="@+id/tv_teamName"
+        android:id="@+id/tv_distanceInKm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/tv_guideName"
@@ -96,23 +101,55 @@
         android:layout_below="@+id/tv_guideName"
         android:layout_marginTop="@dimen/marginTopTextView"
         android:layoutDirection="rtl"
-        android:text="אסכולות"
+        android:text="16.9"
         android:textDirection="rtl"
-        android:drawableRight="@drawable/ic_group_black_24dp"
+        android:drawableRight="@drawable/ic_directions_walk_black_24dp"
+        android:drawableTint="@color/colorPrimary"
+        android:drawablePadding="@dimen/iconNearTextView"/>
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tv_distanceInKm"
+        android:layout_alignRight="@+id/tv_distanceInKm"
+        android:layout_below="@+id/tv_distanceInKm"
+        android:layout_marginTop="@dimen/marginTopTextView"
+        android:layoutDirection="rtl"
+        android:text="ישראל"
+        android:textDirection="rtl"
+        android:drawableRight="@drawable/ic_location_on_black_24dp"
+        android:drawableTint="@color/colorPrimary"
+        android:drawablePadding="@dimen/iconNearTextView"/>
+
+    <TextView
+        android:id="@+id/tv_tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tv_country"
+        android:layout_alignRight="@+id/tv_country"
+        android:layout_below="@+id/tv_country"
+        android:layout_marginTop="@dimen/marginTopTextView"
+        android:layoutDirection="rtl"
+        android:text="נחל חמדל, שלום"
+        android:textDirection="rtl"
+        android:drawableRight="@drawable/ic_label_outline_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
 
     <TextView
         android:id="@+id/tv_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_teamName"
-        android:layout_alignRight="@+id/tv_teamName"
-        android:layout_below="@+id/tv_teamName"
+        android:layout_alignEnd="@+id/tv_tags"
+        android:layout_alignRight="@+id/tv_tags"
+        android:layout_below="@+id/tv_tags"
         android:layout_marginTop="@dimen/marginTopTextView"
         android:layoutDirection="rtl"
         android:text="הערה"
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_comment_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
 
     <TextView
@@ -127,35 +164,24 @@
         android:text="נדחה מ 20-2-2015"
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_event_note_black_24dp"
+        android:drawableTint="@color/colorPrimary"
         android:drawablePadding="@dimen/iconNearTextView"/>
 
-    <TextView
-        android:id="@+id/tv_tags"
+    <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/tv_alternative"
         android:layout_alignRight="@+id/tv_alternative"
         android:layout_below="@+id/tv_alternative"
         android:layout_marginTop="@dimen/marginTopTextView"
-        android:layoutDirection="rtl"
-        android:text="נחל חמדל, שלום"
-        android:textDirection="rtl"
-        android:drawableRight="@drawable/ic_label_outline_black_24dp"
-        android:drawablePadding="@dimen/iconNearTextView"/>
-
-    <TextView
-        android:id="@+id/tv_albumId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_tags"
-        android:layout_alignRight="@+id/tv_tags"
-        android:layout_below="@+id/tv_tags"
-        android:layout_marginTop="@dimen/marginTopTextView"
-        android:layoutDirection="rtl"
-        android:text="אלבום מספר 184"
-        android:textDirection="rtl"
-        android:drawableRight="@drawable/ic_photo_album_black_24dp"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:autoLink="web"
+        android:clickable="true"
+        android:linksClickable="true"
+        android:onClick="goToUrl"
+        android:tint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_menu_gallery"
+        android:tooltipText="photos link"/>
 
 
 </RelativeLayout>
