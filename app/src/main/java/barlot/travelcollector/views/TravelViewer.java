@@ -1,17 +1,20 @@
-package barlot.travelcollector;
+package barlot.travelcollector.views;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+
+import barlot.travelcollector.R;
+import barlot.travelcollector.models.TravelData;
 
 public class TravelViewer extends AppCompatActivity {
 
@@ -68,6 +71,9 @@ public class TravelViewer extends AppCompatActivity {
             if (v instanceof TextView) {
                 setVisibility((TextView)v);
             }
+            if (v instanceof ImageButton) {
+                setImageVisibility((ImageButton) v);
+            }
         }
     }
 
@@ -79,6 +85,13 @@ public class TravelViewer extends AppCompatActivity {
         } else {
             object.setVisibility(object.VISIBLE);
         }
+    }
+
+    void setImageVisibility(ImageButton object) {
+        if (link.isEmpty() || link == null)
+            object.setVisibility(object.GONE);
+        else
+            object.setVisibility(object.VISIBLE);
     }
 
     public void goToUrl(View view) {

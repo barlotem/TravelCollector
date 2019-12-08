@@ -1,4 +1,4 @@
-package barlot.travelcollector;
+package barlot.travelcollector.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,6 +26,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import barlot.travelcollector.DatabaseHelper;
+import barlot.travelcollector.R;
+import barlot.travelcollector.models.TravelData;
+import barlot.travelcollector.views.ListViewer;
 
 public class LoadData extends AppCompatActivity {
 
@@ -45,20 +51,23 @@ public class LoadData extends AppCompatActivity {
     String lastDirectory;
     int count = 0;
 
-    ArrayList<TravelData> uploadData;
+    ArrayList<TravelData> travelDataList;
 
     ListView lvInternalStorage;
+
+    DatabaseHelper myDb;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_data);
+        myDb = new DatabaseHelper(this);
 
         lvInternalStorage = (ListView) findViewById(R.id.lvInternalStorage);
         btnUpDirectory = (Button) findViewById(R.id.btnUpDirectory);
         btnSDCard = (Button) findViewById(R.id.btnViewSDCard);
-        uploadData = new ArrayList<>();
+        travelDataList = new ArrayList<>();
 
         //TODO: need to check the permissions - this function stopped my app
 //        checkFilePermissions();
@@ -136,20 +145,14 @@ public class LoadData extends AppCompatActivity {
             for (int r = 1; r < rowsCount; r++) {
                 Row row = sheet.getRow(r);
                 int cellsCount = row.getPhysicalNumberOfCells();
-                //inner loop, loops through columns
-                for (int c = 0; c < cellsCount; c++) {
-                    //handles if there are to many columns on the excel sheet.
-                    if(c>13){
-                        Log.e(TAG, "readExcelData: ERROR. Excel File Format is incorrect! " );
-                        toastMessage("ERROR: Excel File Format is incorrect!");
-                        break;
-                    }else{
-                        String value = getCellAsString(row, c, formulaEvaluator);
-                        String cellInfo = "r:" + r + "; c:" + c + "; v:" + value;
-                        Log.d(TAG, "readExcelData: Data from row: " + cellInfo);
-                        //sb.append(value + ", ");
-                        sb.append(value + "##");
-                    }
+
+                //inner loop, loops through exactly 11 columns
+                for (int c = 0; c < 11; c++) {
+                    String value = getCellAsString(row, c, formulaEvaluator);
+                    String cellInfo = "r:" + r + "; c:" + c + "; v:" + value;
+                    Log.d(TAG, "readExcelData: Data from row: " + cellInfo);
+                    //sb.append(value + ", ");
+                    sb.append(value + "##");
                 }
                 // for parsing - TODO: consider to change it to less common char
                 //sb.append(":");
@@ -231,12 +234,10 @@ public class LoadData extends AppCompatActivity {
                 String country = columns[8];
                 String comments = columns[9];
                 String link = columns[10];
-                String link2 = columns[11];
-                String linkGoPlus = columns[12];
 
-                //add the the uploadData ArrayList
-                uploadData.add(new TravelData(albumId,date,groupName,guideName,description,
-                        distanceInKm,tags,alternative,country,comments,link,link2,linkGoPlus));
+                //add the the travelDataList ArrayList
+                travelDataList.add(new TravelData(albumId,date,groupName,guideName,description,
+                        distanceInKm,tags,alternative,country,comments,link));
 
             }catch (NumberFormatException e){
 
@@ -247,35 +248,18 @@ public class LoadData extends AppCompatActivity {
             }
         }
 
+        // delete current records and add data imported from excel
+        myDb.deleteAll();
+        myDb.insertData(travelDataList);
+
+        // open travel list viewer
         openListViewerActivity();
-        printDataToLog();
     }
 
     private void openListViewerActivity() {
         Intent intent = new Intent(LoadData.this,ListViewer.class);
-        intent.putParcelableArrayListExtra("data",uploadData);
+        intent.putParcelableArrayListExtra("data", travelDataList);
         startActivity(intent);
-    }
-
-    private void printDataToLog() {
-        Log.d(TAG, "printDataToLog: Printing data to log...");
-
-        for(int i = 0; i< uploadData.size(); i++){
-            int albumId = uploadData.get(i).getAlbumId();
-            Date date = uploadData.get(i).getDate();
-//            String groupName = uploadData.get(i).getgroupName();
-//            String guideName = uploadData.get(i).getGuideName();
-            String description = uploadData.get(i).getDescription();
-//            double distanceInKm = uploadData.get(i).getDistanceInKm();
-//            String tags = uploadData.get(i).getTags();
-//            String alternative = uploadData.get(i).getAlternative();
-//            String country = uploadData.get(i).getCountry();
-//            String comments = uploadData.get(i).getComments();
-//            String link = uploadData.get(i).getLink();
-//            String link2 = uploadData.get(i).getLink2();
-//            String linkGoPlus = uploadData.get(i).getLinkGoPlus();
-            Log.d(TAG, "printDataToLog: TravelData: (" + albumId + "," + date + "," + description + ")");
-        }
     }
 
 
@@ -320,24 +304,6 @@ public class LoadData extends AppCompatActivity {
         }
     }
 
-//    @TargetApi(Build.VERSION_CODES.M)
-//    private void checkFilePermissions() {
-//        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP){
-//            int permissionCheck = this.checkSelfPermission("Manifest.permission.READ_EXTERNAL_STORAGE");
-//            permissionCheck += this.checkSelfPermission("Manifest.permission.WRITE_EXTERNAL_STORAGE");
-//            if (permissionCheck != 0) {
-//
-//                this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, 1001); //Any number
-//            }
-//        }else{
-//            Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
-//        }
-//    }
-
-    /**
-     * customizable toast
-     * @param message
-     */
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }

@@ -1,9 +1,8 @@
-package barlot.travelcollector;
+package barlot.travelcollector.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,10 +26,8 @@ public class TravelData implements Parcelable {
     private String country = "";
     private String comments = "";
     private String link = "";
-    private String link2 = "";
-    private String linkGoPlus = "";
 
-    public TravelData(int albumId, Date date, String groupName, String guideName, String description, double distanceInKm, String tags, String alternative, String country, String comments, String link, String link2, String linkGoPlus) {
+    public TravelData(int albumId, Date date, String groupName, String guideName, String description, double distanceInKm, String tags, String alternative, String country, String comments, String link) {
         this.albumId = albumId;
         this.date = date;
         this.groupName = groupName;
@@ -42,8 +39,6 @@ public class TravelData implements Parcelable {
         this.country = country;
         this.comments = comments;
         this.link = link;
-        this.link2 = link2;
-        this.linkGoPlus = linkGoPlus;
     }
 
     public TravelData(Parcel in) throws ParseException {
@@ -58,8 +53,6 @@ public class TravelData implements Parcelable {
         this.country =  in.readString();
         this.comments =  in.readString();
         this.link = in.readString();
-        this.link2 =  in.readString();
-        this.linkGoPlus = in.readString();
     }
 
     public int getAlbumId() {
@@ -150,22 +143,6 @@ public class TravelData implements Parcelable {
         this.link = link;
     }
 
-    public String getLink2() {
-        return link2;
-    }
-
-    public void setLink2(String link2) {
-        this.link2 = link2;
-    }
-
-    public String getLinkGoPlus() {
-        return linkGoPlus;
-    }
-
-    public void setLinkGoPlus(String linkGoPlus) {
-        this.linkGoPlus = linkGoPlus;
-    }
-
     @Override
     public String toString() {
         return description;
@@ -190,8 +167,6 @@ public class TravelData implements Parcelable {
         dest.writeString(country);
         dest.writeString(comments);
         dest.writeString(link);
-        dest.writeString(link2);
-        dest.writeString(linkGoPlus);
     }
 
     public static final Parcelable.Creator<TravelData> CREATOR = new Parcelable.Creator<TravelData>() {

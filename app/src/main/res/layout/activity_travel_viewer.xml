@@ -14,15 +14,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:layoutDirection="rtl"
         android:text="טיול על מים סוערים"
         android:textAllCaps="false"
         android:textDirection="rtl"
         android:textSize="24sp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/tv_date"
@@ -35,7 +35,7 @@
         android:layoutDirection="rtl"
         android:text="27-02-15"
         android:textDirection="rtl"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
     <View
         android:id="@+id/crossLine"
@@ -45,7 +45,7 @@
         android:layout_alignRight="@+id/tv_date"
         android:layout_below="@+id/tv_date"
         android:layout_marginTop="@dimen/marginTopTextView"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorAccent" />
 
     <TextView
         android:id="@+id/tv_albumId"
@@ -60,7 +60,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_photo_album_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_groupName"
@@ -75,7 +76,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_group_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_guideName"
@@ -90,7 +92,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_assignment_ind_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_distanceInKm"
@@ -105,7 +108,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_directions_walk_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_country"
@@ -120,7 +124,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_location_on_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_tags"
@@ -135,7 +140,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_label_outline_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_comments"
@@ -150,7 +156,8 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_comment_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <TextView
         android:id="@+id/tv_alternative"
@@ -165,23 +172,25 @@
         android:textDirection="rtl"
         android:drawableRight="@drawable/ic_event_note_black_24dp"
         android:drawableTint="@color/colorPrimary"
-        android:drawablePadding="@dimen/iconNearTextView"/>
+        android:drawablePadding="@dimen/iconNearTextView"
+        android:padding="@dimen/textViewPadding"/>
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/tv_alternative"
-        android:layout_alignRight="@+id/tv_alternative"
-        android:layout_below="@+id/tv_alternative"
-        android:layout_marginTop="@dimen/marginTopTextView"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="26dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:autoLink="web"
+        android:background="@drawable/photos_96dp"
         android:clickable="true"
         android:linksClickable="true"
         android:onClick="goToUrl"
-        android:tint="@color/colorPrimary"
-        app:srcCompat="@drawable/ic_menu_gallery"
-        android:tooltipText="photos link"/>
+        android:tooltipText="photos link" />
 
 
 </RelativeLayout>

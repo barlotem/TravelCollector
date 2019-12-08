@@ -1,13 +1,10 @@
-package barlot.travelcollector;
+package barlot.travelcollector.views;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -15,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import barlot.travelcollector.R;
+import barlot.travelcollector.models.TravelData;
 
 public class ListViewer extends AppCompatActivity {
 
