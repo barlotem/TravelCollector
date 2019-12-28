@@ -28,7 +28,7 @@
         android:layout_marginBottom="33dp"
         android:layout_marginEnd="61dp"
         android:layout_marginRight="61dp"
-        app:srcCompat="@drawable/plus"
+        app:srcCompat="@drawable/folder"
         android:onClick="openLoadData"/>
 
 
@@ -64,6 +64,7 @@
         android:layout_alignEnd="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignTop="@+id/imageView5"
+        android:visibility="invisible"
         app:srcCompat="@drawable/question" />
 
     <TextView
@@ -78,7 +79,8 @@
         android:layout_marginStart="20dp"
         android:onClick="openLoadData"
         android:text="מדריך"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -88,6 +90,7 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="78dp"
+        android:visibility="invisible"
         app:srcCompat="@drawable/settings" />
 
     <TextView
@@ -101,6 +104,7 @@
         android:layout_marginStart="19dp"
         android:onClick="openLoadData"
         android:text="הגדרות"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -64,13 +64,19 @@ public class TravelViewer extends AppCompatActivity {
 
         link = travelData.getLink();
 
-        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout_travel_viewer);
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout_travel_viewer_text);
 
         for (int i = 0; i < layout.getChildCount(); i++) {
             View v = layout.getChildAt(i);
             if (v instanceof TextView) {
                 setVisibility((TextView)v);
             }
+        }
+
+        layout = (RelativeLayout)findViewById(R.id.layout_travel_viewer_button);
+
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v = layout.getChildAt(i);
             if (v instanceof ImageButton) {
                 setImageVisibility((ImageButton) v);
             }

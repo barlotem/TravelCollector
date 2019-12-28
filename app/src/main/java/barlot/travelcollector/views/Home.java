@@ -29,4 +29,10 @@ public class Home extends AppCompatActivity {
         intent.putParcelableArrayListExtra("data", db.getAllData());
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
