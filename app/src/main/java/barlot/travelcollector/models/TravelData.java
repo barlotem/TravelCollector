@@ -2,6 +2,7 @@ package barlot.travelcollector.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,7 @@ import java.util.Date;
  * Created by USER on 25-Nov-19.
  */
 
-public class TravelData implements Parcelable {
+public class TravelData implements Comparable<TravelData>, Parcelable {
 
     SimpleDateFormat dateFormmater = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -185,4 +186,11 @@ public class TravelData implements Parcelable {
             return new TravelData[size];
         }
     };
+
+    // Sort travel list by Date
+    @Override
+    public int compareTo(TravelData comparable) {
+        return this.date.compareTo(((TravelData)comparable).getDate());
+    }
+
 }

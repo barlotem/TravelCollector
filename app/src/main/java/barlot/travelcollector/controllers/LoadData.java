@@ -115,12 +115,18 @@ public class LoadData extends AppCompatActivity {
             StringBuilder sb = new StringBuilder();
 
             //outer loop, loops through rows
-            for (int r = 1; r < rowsCount; r++) {
+            // start from line 5
+            for (int r = 5; r < rowsCount; r++) {
                 Row row = sheet.getRow(r);
-                int cellsCount = row.getPhysicalNumberOfCells();
 
+                // check for end of file flag
+                if (getCellAsString(row,3,formulaEvaluator).equals("EOF"))
+                {
+                    break;
+                }
                 //inner loop, loops through exactly 11 columns
-                for (int c = 0; c < 11; c++) {
+                // start from raw 4
+                for (int c = 3; c < 3+11; c++) {
                     String value = getCellAsString(row, c, formulaEvaluator);
                     String cellInfo = "r:" + r + "; c:" + c + "; v:" + value;
                     Log.d(TAG, "readExcelData: Data from row: " + cellInfo);
@@ -187,49 +193,56 @@ public class LoadData extends AppCompatActivity {
      * Method for parsing imported data and storing in ArrayList<TravelData>
      */
     public void parseStringBuilder(StringBuilder mStringBuilder) {
-        Log.d(TAG, "parseStringBuilder: Started parsing.");
+        try {
+            Log.d(TAG, "parseStringBuilder: Started parsing.");
 
-        // splits the sb into rows.
-        String[] rows = mStringBuilder.toString().split("::");
+            // splits the sb into rows.
+            String[] rows = mStringBuilder.toString().split("::");
 
-        //Add to the ArrayList<TravelData> row by row
-        for (int i = 0; i < rows.length; i++) {
-            //Split the columns of the rows TODO: make sure there is not comma in the original sheet
-            String[] columns = rows[i].split("##");
+            //Add to the ArrayList<TravelData> row by row
+            for (int i = 0; i < rows.length; i++) {
 
-            //use try catch to make sure there are no "" that try to parse into doubles.
-            try {
-                int albumId = (int) Double.parseDouble(columns[0]);
-                Date date = dateFormmater.parse(columns[1]);
-                String groupName = columns[2];
-                String guideName = columns[3];
-                String description = columns[4];
-                double distanceInKm = Double.parseDouble(columns[5]);
-                String tags = columns[6];
-                String alternative = columns[7];
-                String country = columns[8];
-                String comments = columns[9];
-                String link = columns[10];
+                //Split the columns of the rows TODO: make sure there is not comma in the original sheet
+                String[] columns = rows[i].split("##");
 
-                //add the the travelDataList ArrayList
-                travelDataList.add(new TravelData(albumId, date, groupName, guideName, description,
-                        distanceInKm, tags, alternative, country, comments, link));
+                //use try catch to make sure there are no "" that try to parse into doubles.
 
-            } catch (NumberFormatException e) {
+                    int albumId = (int) Double.parseDouble(columns[10]);
+                    Date date = dateFormmater.parse(columns[9]);
+                    String groupName = columns[8];
+                    String guideName = columns[7];
+                    String description = columns[6];
+                    double distanceInKm = Double.parseDouble(columns[5]);
+                    String tags = columns[4];
+                    String alternative = columns[3];
+                    String country = columns[2];
+                    String comments = columns[1];
+                    String link = columns[0];
 
-                Log.e(TAG, "parseStringBuilder: NumberFormatException: " + e.getMessage());
-
-            } catch (ParseException e) {
-                Log.e(TAG, "parseStringBuilder: ParseException: " + e.getMessage());
+                    //add the the travelDataList ArrayList
+                    travelDataList.add(new TravelData(albumId, date, groupName, guideName, description,
+                            distanceInKm, tags, alternative, country, comments, link));
             }
+                // delete current records and add data imported from excel
+            myDb.deleteAll();
+            myDb.insertData(travelDataList);
+
+            // open travel list viewer
+            openListViewerActivity();
+        } catch (NumberFormatException e) {
+
+            Log.e(TAG, "parseStringBuilder: NumberFormatException: " + e.getMessage());
+
+        } catch (ParseException e) {
+            Log.e(TAG, "parseStringBuilder: ParseException: " + e.getMessage());
         }
-
-        // delete current records and add data imported from excel
-        myDb.deleteAll();
-        myDb.insertData(travelDataList);
-
-        // open travel list viewer
-        openListViewerActivity();
+        catch (Exception e) {
+            Log.e(TAG, "Got Exception" + e.getMessage());
+            toastMessage("מבנה הקובץ אינו תקין");
+            Intent intent = new Intent(LoadData.this, Home.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void openListViewerActivity() {

@@ -55,7 +55,6 @@
             android:layoutDirection="rtl"
             android:text="אלבום מספר 184"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_photo_album_black_24dp" />
@@ -71,7 +70,6 @@
             android:layoutDirection="rtl"
             android:text="אסכולות"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_group_black_24dp" />
@@ -87,7 +85,6 @@
             android:layoutDirection="rtl"
             android:text="גלעד בן צבי"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_assignment_ind_black_24dp" />
@@ -103,7 +100,6 @@
             android:layoutDirection="rtl"
             android:text="16.9"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_directions_walk_black_24dp" />
@@ -119,7 +115,6 @@
             android:layoutDirection="rtl"
             android:text="ישראל"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_location_on_black_24dp" />
@@ -135,7 +130,6 @@
             android:layoutDirection="rtl"
             android:text="נחל חמדל, שלום"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_label_outline_black_24dp" />
@@ -151,7 +145,6 @@
             android:layoutDirection="rtl"
             android:text="הערה"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_comment_black_24dp" />
@@ -167,7 +160,6 @@
             android:layoutDirection="rtl"
             android:text="נדחה מ 20-2-2015"
             android:textDirection="rtl"
-            android:drawableTint="@color/colorPrimary"
             android:drawablePadding="@dimen/iconNearTextView"
             android:padding="@dimen/textViewPadding"
             android:drawableStart="@drawable/ic_event_note_black_24dp" />

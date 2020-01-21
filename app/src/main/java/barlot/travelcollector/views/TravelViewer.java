@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 
@@ -94,15 +95,21 @@ public class TravelViewer extends AppCompatActivity {
     }
 
     void setImageVisibility(ImageButton object) {
-        if (link.isEmpty() || link == null)
+        if (link.isEmpty() || link == null || link.equals("") || link.equals(","))
             object.setVisibility(object.GONE);
         else
             object.setVisibility(object.VISIBLE);
     }
 
     public void goToUrl(View view) {
-        Uri uriUrl = Uri.parse(link);
-        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-        startActivity(launchBrowser);
+        try {
+            Uri uriUrl = Uri.parse(link);
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "לא ניתן לטעון את הקישור: "+link, Toast.LENGTH_SHORT).show();
+        }
+
     };
 }
