@@ -42,7 +42,7 @@
             android:layout_alignEnd="@+id/tv_date"
             android:layout_below="@+id/tv_date"
             android:layout_marginTop="@dimen/marginTopTextView"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tv_albumId"

@@ -30,6 +30,13 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openStatistics(View v) {
+        DatabaseHelper db = new DatabaseHelper(this);
+        Intent intent = new Intent(Home.this,Statistics.class);
+        intent.putParcelableArrayListExtra("data", db.getAllData());
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

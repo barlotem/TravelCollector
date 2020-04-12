@@ -10,21 +10,25 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="22dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:paddingRight="20dp"
         android:text="הטיולים שלי"
-        />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp" />
+
 
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/header"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="start"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="42dp"
         android:layoutDirection="rtl"
         android:textDirection="rtl" />
 

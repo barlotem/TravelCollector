@@ -3,6 +3,7 @@ package barlot.travelcollector.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,41 +17,47 @@ import java.util.HashMap;
 import java.util.List;
 
 import barlot.travelcollector.R;
-import barlot.travelcollector.controllers.LoadData;
 import barlot.travelcollector.models.TravelData;
 
 public class ListViewer extends AppCompatActivity {
 
-    ArrayList<TravelData> uploadData;
+    ArrayList<TravelData> listOfTravels;
     SimpleDateFormat dateFormmater = new SimpleDateFormat("dd-MM-yyyy");
 
     ListView listView;
+
+    TextWatcher mSearchTw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_viewer);
 
-          listView = findViewById(R.id.list_view);
-          uploadData = getIntent().getParcelableArrayListExtra("data");
+        init();
+    }
 
-          if (uploadData.size()==0) {
-              Toast.makeText(this, "לא קיימים טיולים", Toast.LENGTH_SHORT).show();
-              Intent intent = new Intent(ListViewer.this, Home.class);
-              startActivity(intent);
-              finish();
-          }
+    private void init() {
 
-        Collections.sort(uploadData);
+        listView = findViewById(R.id.list_view);
+        listOfTravels = getIntent().getParcelableArrayListExtra("data");
+
+        if (listOfTravels.size()==0) {
+            Toast.makeText(this, "לא קיימים טיולים", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ListViewer.this, Home.class);
+            startActivity(intent);
+            finish();
+        }
+
+        Collections.sort(listOfTravels);
 
 
         // Each row in the list description and date
         List<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
 
-        for(int i=0;i<uploadData.size();i++){
+        for(int i = 0; i< listOfTravels.size(); i++){
             HashMap<String, String> hm = new HashMap<String,String>();
-            hm.put("description", uploadData.get(i).getDescription());
-            hm.put("date", dateFormmater.format(uploadData.get(i).getDate()));
+            hm.put("description", listOfTravels.get(i).getDescription());
+            hm.put("date", dateFormmater.format(listOfTravels.get(i).getDate()));
             list.add(hm);
         }
 
@@ -64,9 +71,10 @@ public class ListViewer extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                openTravelViewerActivity(uploadData.get(i));
+                openTravelViewerActivity(listOfTravels.get(i));
             }
         });
+
 
     }
 

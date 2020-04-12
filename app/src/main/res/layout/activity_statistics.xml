@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:layout_gravity="right"
+    >
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_margin"
+        android:layout_marginTop="22dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:text="סטטיסטיקה"
+        />
+
+    <View
+        android:id="@+id/crossLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignEnd="@+id/header"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/marginTopTextView"
+        android:background="@color/colorPrimary" />
+
+</RelativeLayout>
