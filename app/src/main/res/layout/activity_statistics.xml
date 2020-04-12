@@ -1,50 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="rtl"
     android:layout_gravity="right"
-    android:orientation="vertical">
+    android:layoutDirection="rtl">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="22dp"
-        android:text="סטטיסטיקה"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="24sp" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ScrollView01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <View
-        android:id="@+id/crossLine"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/marginTopTextView"
-        android:background="@color/colorPrimary" />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="573dp">
-
-        <TableRow
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layoutDirection="rtl">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginTop="22dp"
+                android:text="סטטיסטיקה"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TextView
+                android:id="@+id/tv_countOfTravel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/crossLine"
+                android:layout_alignStart="@+id/crossLine"
+                android:layout_below="@+id/crossLine"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_photo_album_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="מספר טיולים"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_totalDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tv_countOfTravel"
+                android:layout_alignStart="@+id/tv_countOfTravel"
+                android:layout_below="@+id/tv_countOfTravel"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_directions_walk_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="מרחק מצטבר (קילומטרים)"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/tv_avgDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tv_totalDistance"
+                android:layout_alignStart="@+id/tv_totalDistance"
+                android:layout_below="@+id/tv_totalDistance"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_terrain_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="מרחק ממוצע לטיולי"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_topCountries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tv_avgDistance"
+                android:layout_alignStart="@+id/tv_avgDistance"
+                android:layout_below="@+id/tv_avgDistance"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="המדינות הכי נפוצות"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_topGuides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tv_topCountries"
+                android:layout_alignStart="@+id/tv_topCountries"
+                android:layout_below="@+id/tv_topCountries"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_assignment_ind_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="המדריכים הכי נפוצים"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_topGroups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/tv_topGuides"
+                android:layout_alignStart="@+id/tv_topGuides"
+                android:layout_below="@+id/tv_topGuides"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:drawablePadding="@dimen/iconNearTextView"
+                android:drawableStart="@drawable/ic_group_black_24dp"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/textViewPadding"
+                android:text="הקבוצות הנפוצות ביותר"
+                android:textDirection="rtl"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/crossLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignEnd="@+id/tv_header"
+                android:layout_below="@+id/tv_header"
+                android:layout_marginTop="@dimen/marginTopTextView"
+                android:background="@color/colorPrimary" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

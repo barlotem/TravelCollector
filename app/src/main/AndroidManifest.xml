@@ -32,12 +32,15 @@
             android:name=".views.TravelViewer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".views.Statistics"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".controllers.LoadData"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.Home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".views.Statistics"></activity>
+
     </application>
 
 </manifest>

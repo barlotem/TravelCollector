@@ -25,14 +25,14 @@ public class Home extends AppCompatActivity {
 
     public void openListView(View v) {
         DatabaseHelper db = new DatabaseHelper(this);
-        Intent intent = new Intent(Home.this,ListViewer.class);
+        Intent intent = new Intent(Home.this, ListViewer.class);
         intent.putParcelableArrayListExtra("data", db.getAllData());
         startActivity(intent);
     }
 
     public void openStatistics(View v) {
         DatabaseHelper db = new DatabaseHelper(this);
-        Intent intent = new Intent(Home.this,Statistics.class);
+        Intent intent = new Intent(Home.this, Statistics.class);
         intent.putParcelableArrayListExtra("data", db.getAllData());
         startActivity(intent);
     }
