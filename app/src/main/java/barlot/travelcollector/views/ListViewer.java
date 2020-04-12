@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import barlot.travelcollector.R;
+import barlot.travelcollector.Utils.PropertiesHelper;
 import barlot.travelcollector.models.TravelData;
 
 public class ListViewer extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class ListViewer extends AppCompatActivity {
 
         for(int i = 0; i< listOfTravels.size(); i++){
             HashMap<String, String> hm = new HashMap<String,String>();
-            hm.put("description", listOfTravels.get(i).getDescription());
+            hm.put("description", listOfTravels.get(i).getAlbumId() + ": " + listOfTravels.get(i).getDescription());
             hm.put("date", dateFormmater.format(listOfTravels.get(i).getDate()));
             list.add(hm);
         }
@@ -74,15 +75,12 @@ public class ListViewer extends AppCompatActivity {
                 openTravelViewerActivity(listOfTravels.get(i));
             }
         });
-
-
     }
-
 
     private void openTravelViewerActivity(TravelData data) {
         if (data.getDescription().equals("")||data.getDescription().equals(",")||data.getDescription().length()<2)
         {
-            Toast.makeText(this, "טיול זה לא מכיל מספיק מידע", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, PropertiesHelper.getMessagesValue(this, "listViewer_notEnoughInformation","טיול זה לא מכיל מספיק מידע"), Toast.LENGTH_SHORT).show();
         }
         else {
             Intent intent = new Intent(ListViewer.this,TravelViewer.class);
@@ -91,5 +89,4 @@ public class ListViewer extends AppCompatActivity {
         }
 
     }
-
 }

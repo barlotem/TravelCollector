@@ -55,32 +55,40 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public boolean insertData(List<TravelData> travelDataList) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        long result;
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            long result;
 
-        for (int i=0; i<travelDataList.size(); i++)
+            for (int i=0; i<travelDataList.size(); i++)
+            {
+                TravelData travelData = travelDataList.get(i);
+                contentValues.put(album_id,travelData.getAlbumId());
+                contentValues.put(date,dateFormmater.format(travelData.getDate()));
+                contentValues.put(groupName,travelData.getgroupName());
+                contentValues.put(guideName,travelData.getGuideName());
+                contentValues.put(description,travelData.getDescription());
+                contentValues.put(distanceInKm,travelData.getDistanceInKm());
+                contentValues.put(tags,travelData.getTags());
+                contentValues.put(alternative,travelData.getAlternative());
+                contentValues.put(country,travelData.getCountry());
+                contentValues.put(comments,travelData.getComments());
+                contentValues.put(link,travelData.getLink());
+
+                result = db.insert(TABLE_NAME,null,contentValues);
+
+                if (result == -1)
+                    return false;
+            }
+
+            return true;
+        }
+        catch (Exception e)
         {
-            TravelData travelData = travelDataList.get(i);
-            contentValues.put(album_id,travelData.getAlbumId());
-            contentValues.put(date,dateFormmater.format(travelData.getDate()));
-            contentValues.put(groupName,travelData.getgroupName());
-            contentValues.put(guideName,travelData.getGuideName());
-            contentValues.put(description,travelData.getDescription());
-            contentValues.put(distanceInKm,travelData.getDistanceInKm());
-            contentValues.put(tags,travelData.getTags());
-            contentValues.put(alternative,travelData.getAlternative());
-            contentValues.put(country,travelData.getCountry());
-            contentValues.put(comments,travelData.getComments());
-            contentValues.put(link,travelData.getLink());
-
-            result = db.insert(TABLE_NAME,null,contentValues);
-
-            if (result == -1)
-                return false;
+            Log.e(TAG, "could not insert data "+e.getMessage());
+            return false;
         }
 
-        return true;
     }
 
     public ArrayList<TravelData> getAllData(){

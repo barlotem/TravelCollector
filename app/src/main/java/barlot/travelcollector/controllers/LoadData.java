@@ -17,10 +17,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +28,7 @@ import java.util.Date;
 import barlot.travelcollector.DatabaseHelper;
 import barlot.travelcollector.R;
 import barlot.travelcollector.Utils.PathUtil;
+import barlot.travelcollector.Utils.PropertiesHelper;
 import barlot.travelcollector.models.TravelData;
 import barlot.travelcollector.views.Home;
 import barlot.travelcollector.views.ListViewer;
@@ -53,6 +52,8 @@ public class LoadData extends AppCompatActivity {
     DatabaseHelper myDb;
 
     public static int REQUEST_CODE = 1;
+    int excel_startRow, excel_startCol, excel_totalCols;
+    String excel_EndFlag;
 
 
     @Override
@@ -73,6 +74,11 @@ public class LoadData extends AppCompatActivity {
         String[] mimetypes = {"application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
         fileIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
         startActivityForResult(fileIntent, REQUEST_CODE);
+
+        excel_startRow = Integer.parseInt(PropertiesHelper.getConfigValue(this, "loadData_excel_startRow","6"));
+        excel_startCol = Integer.parseInt(PropertiesHelper.getConfigValue(this, "loadData_excel_startCol","3"));
+        excel_totalCols = Integer.parseInt(PropertiesHelper.getConfigValue(this, "loadData_excel_totalCols","11"));
+        excel_EndFlag = PropertiesHelper.getConfigValue(this, "loadData_excel_EndFlag","EOF");
     }
 
     @Override
@@ -101,7 +107,7 @@ public class LoadData extends AppCompatActivity {
     private void readExcelData(String filePath) {
         Log.d(TAG, "readExcelData: Reading Excel File.");
 
-
+// TODO: make sure that 'filePath' is not null. happend to be null when it's come not from device internal storage
         try {
             File file = new File(filePath);
             OPCPackage opcPackage = OPCPackage.open(file);
@@ -116,25 +122,24 @@ public class LoadData extends AppCompatActivity {
 
             //outer loop, loops through rows
             // start from line 5
-            for (int r = 5; r < rowsCount; r++) {
+            for (int r = excel_startRow -1; r < rowsCount; r++) {
                 Row row = sheet.getRow(r);
 
                 // check for end of file flag
-                if (getCellAsString(row,3,formulaEvaluator).equals("EOF"))
+                if (getCellAsString(row,excel_startCol - 1,formulaEvaluator).equals(excel_EndFlag))
                 {
                     break;
                 }
                 //inner loop, loops through exactly 11 columns
-                // start from raw 4
-                for (int c = 3; c < 3+11; c++) {
+                // start from col 4
+                for (int c = excel_startCol - 1; c <excel_startCol + excel_totalCols - 1; c++) {
                     String value = getCellAsString(row, c, formulaEvaluator);
-                    String cellInfo = "r:" + r + "; c:" + c + "; v:" + value;
-                    Log.d(TAG, "readExcelData: Data from row: " + cellInfo);
-                    //sb.append(value + ", ");
+//                    String cellInfo = "row:" + r + "; col:" + c + "; value:" + value;
+//                    Log.d(TAG, "readExcelData: Data from " + cellInfo);
+
                     sb.append(value + "##");
                 }
                 // for parsing - TODO: consider to change it to less common char
-                //sb.append(":");
                 sb.append("::");
             }
             Log.d(TAG, "readExcelData: STRINGBUILDER: " + sb.toString());
@@ -184,7 +189,7 @@ public class LoadData extends AppCompatActivity {
             }
         } catch (NullPointerException e) {
 
-            Log.e(TAG, "getCellAsString: NullPointerException: " + e.getMessage());
+            Log.e(TAG, "getCellAsString: NullPointerException: " + e.getMessage() + "at row: "+row.getRowNum() + " col: "+c);
         }
         return value;
     }
@@ -238,7 +243,7 @@ public class LoadData extends AppCompatActivity {
         }
         catch (Exception e) {
             Log.e(TAG, "Got Exception" + e.getMessage());
-            toastMessage("מבנה הקובץ אינו תקין");
+            toastMessage(PropertiesHelper.getMessagesValue(this, "loadData_fileStructureProblem","מבנה הקובץ אינו תקין"));
             Intent intent = new Intent(LoadData.this, Home.class);
             startActivity(intent);
             finish();
